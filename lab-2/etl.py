@@ -25,7 +25,7 @@ with beam.Pipeline() as p:
   output = (
       (sales_attendance, hr_attendance)
       | 'Merging two PCollections' >> beam.Flatten()
-      | 'Writing output' >> beam.io.WriteToText("data/attendance_results")
+      | 'Writing output' >> beam.io.WriteTo("attendance_results")
   )
 
 
