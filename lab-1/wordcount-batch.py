@@ -1,7 +1,5 @@
 from __future__ import absolute_import
-import argparse
-import logging
-import re
+import argparse, logging, re
 from past.builtins import unicode
 import apache_beam as beam
 from apache_beam.io import ReadFromText, WriteToText
@@ -32,7 +30,7 @@ def run(argv=None, save_main_session=True):
 
         # The ParDo only accepts DoFn
         # beam.Map is a one-to-one transform,
-        # CombinePerKey works on two-element tuples. It groups the tuples by the first element (the key), and apply the provided function to the list of second elements (values)
+        # CombinePerKey works on two-element tuples. Groups the tuples by the first element (the key), and apply the provided function to the list 
         counts = (
             lines
             | 'Split' >>
@@ -45,15 +43,3 @@ def run(argv=None, save_main_session=True):
 
 if __name__ == '__main__':
     run()
-
-    '''
-  | is a synonym for apply, which applies a PTransform to a PCollection to produce a new PCollection. >> allows you to name a step for easier display in various UIs -- the string between the | and the >> is only used for these display purposes and identifying that particular application
-  
-  - moins de temps pour introduire l'example (dre word count basic) 
-  - top down (lire, transformation, storage)
-  - format
-  - clean les commentaires un peu, plus light 
-  - attetion, pas vrai objectif vitesse --> vrai objectif scaling 
-  - allez moins vite 
-  - code plus light 
-  '''
